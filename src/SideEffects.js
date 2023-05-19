@@ -14,6 +14,12 @@ export const SideEffects = () => {
   // username's length with respect to MIN_CHARS and MAX_CHARS.
   let statusEmoji = '';
 
+  if (username.length >= MIN_CHARS && username.length <= MAX_CHARS) {
+    statusEmoji = '✅';
+  } else {
+    statusEmoji = '❌';
+  }
+
   return (
     <>
       <h2>SideEffects</h2>
@@ -22,7 +28,7 @@ export const SideEffects = () => {
       <div>
         <input
           id="username"
-          class="form-control"
+          className="form-control"
           onChange={onChange}
           value={username}
         />
@@ -30,7 +36,7 @@ export const SideEffects = () => {
       </div>
 
       {/* TODO: Show how many characters the username has. */}
-      <small>char count:</small>
+      <small>char count: {username.length} </small>
     </>
   );
 };
