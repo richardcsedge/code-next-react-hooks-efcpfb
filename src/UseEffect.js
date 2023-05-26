@@ -13,8 +13,17 @@ export const UseEffect = () => {
   // you show the text, wait a few seconds, then show it again?
   const [secondsAgo, setSecondsAgo] = useState(0);
   useEffect(() => {
-    
-  }, []);
+    if (!isSecondsAgoVisible) return;
+
+    const startTime = Date.now();
+
+    const timeInterval = setInterval(() => {
+      const currentTime = Date.now();
+      setSecondsAgo(Math.round((currentTime - startTime)/1000));
+    }, 1000);
+
+    return () => clearInterval(timeInterval);
+  }, [isSecondsAgoVisible]);
 
   return (
     <>
@@ -27,6 +36,7 @@ export const UseEffect = () => {
       </div>
 
       {/* TODO: Show how many seconds ago the text was shown. */}
+      {isSecondsAgoVisible && <span>{secondsAgo}</span>}
     </>
   );
 };
