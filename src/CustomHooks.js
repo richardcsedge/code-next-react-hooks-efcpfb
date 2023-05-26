@@ -36,6 +36,16 @@ const COLORS = ['red', 'green', 'blue'];
 // end of the array, go back to the first choice.
 const useColor = () => {
   // BONUS: Can you make the colors change every second?
+  const [colorIndex, setColorIndex] = useState(0);
+  const color = COLORS[colorIndex];
 
-  return [];
+  const nextColor = () => {
+    if ((colorIndex + 1 > COLORS.length - 1)) {
+      setColorIndex(0);
+    } else {
+      setColorIndex(colorIndex + 1);
+    };
+  };
+
+  return [color, nextColor];
 };
